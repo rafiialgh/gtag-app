@@ -36,7 +36,7 @@ export default function HomeScreen() {
   };
 
   const renderHeader = () => (
-    <View className="border border-white px-5">
+    <View className="px-5">
       {/* Header Top */}
       {/* <View className="mt-5 flex flex-row justify-between">
         <View className="h-5 w-20">
@@ -71,8 +71,8 @@ export default function HomeScreen() {
       {/* Pertandingan Langsung */}
       <View className="gap-3">
         <View className="mt-5 flex-row items-center">
-          <Text className="font-sans-bold text-xl">Pertandingan Langsung</Text>
-          {/* <AnimatedDot /> */}
+          <Text className="font-sans-bold text-base">Pertandingan Langsung</Text>
+          <AnimatedDot />
         </View>
         <View className="relative h-[158px] w-full flex-row overflow-hidden rounded-md">
           <View className="w-1/2 flex-row items-center justify-center gap-5 bg-[#FF383C] pr-5">
@@ -113,7 +113,7 @@ export default function HomeScreen() {
 
       {/* Histori Title */}
       <View className="mt-5 flex-row">
-        <Text className="font-sans-bold text-xl">Histori Pertandingan</Text>
+        <Text className="font-sans-bold text-base">Histori Pertandingan</Text>
       </View>
     </View>
   );
@@ -129,7 +129,7 @@ export default function HomeScreen() {
         ListHeaderComponent={renderHeader}
         contentContainerStyle={{ paddingTop: insets.top + 60, paddingBottom: 24, gap: 12 }}
         progressViewOffset={insets.top + 60}
-        className='border border-red-500 bg-[#111112]'
+        className=' bg-[#111112]'
         renderItem={({ item }) => (
           <View className="mx-5 h-[82px] flex-row items-center justify-between rounded-md border border-[#B8B8B84D] bg-[#272727] px-5">
             <View className="flex-row items-center justify-center gap-3">

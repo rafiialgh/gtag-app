@@ -1,14 +1,14 @@
 import { Text } from '@/components/ui/text';
 import React from 'react';
-import { 
-  ActivityIndicator, 
-  Image, 
-  Platform, 
-  TouchableOpacity, 
-  View, 
+import {
+  ActivityIndicator,
+  Image,
+  Platform,
+  TouchableOpacity,
+  View,
   KeyboardAvoidingView,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useForm, Controller } from 'react-hook-form';
@@ -54,15 +54,11 @@ export default function Login() {
   };
 
   return (
-    <SafeAreaView 
-      className="flex-1 bg-[#111112]" 
-      edges={['top', 'left', 'right']}
-    >
+    <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
-      >
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}>
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -71,13 +67,9 @@ export default function Login() {
           }}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
-          bounces={false}
-        >
-          <View className='pt-10 w-32 h-20'>
-            <Image 
-              className="w-full h-full" 
-              source={require('@/assets/images/g-tag.png')} 
-            />
+          bounces={false}>
+          <View className="h-20 w-32 pt-10">
+            <Image className="h-full w-full" source={require('@/assets/images/g-tag.png')} />
           </View>
 
           <View className="mb-5 mt-5 flex gap-1">
@@ -90,7 +82,7 @@ export default function Login() {
           <View className="">
             <View className="gap-4 py-10">
               <View className="gap-2">
-                <Label>Username</Label>
+                <Label className='font-sans'>Username</Label>
                 <Controller
                   control={control}
                   name="email"
@@ -116,7 +108,7 @@ export default function Login() {
               </View>
 
               <View className="gap-2">
-                <Label>Password</Label>
+                <Label className='font-sans'>Password</Label>
                 <Controller
                   control={control}
                   name="password"
@@ -149,12 +141,12 @@ export default function Login() {
                     checked={checked}
                     onCheckedChange={onCheckedChange}
                   />
-                  <Text>Ingat saya?</Text>
+                  <Text className="font-sans text-sm">Ingat saya?</Text>
                 </View>
                 <View>
                   <Link href="/forgot-password" asChild>
                     <TouchableOpacity>
-                      <Text className="font-sans text-blue-500">Lupa Password?</Text>
+                      <Text className="font-sans text-sm text-blue-500">Lupa Password?</Text>
                     </TouchableOpacity>
                   </Link>
                 </View>
@@ -164,21 +156,23 @@ export default function Login() {
                 onPress={handleSubmit(onSubmit)}
                 disabled={isSubmitting}
                 size={'lg'}
-                className="mt-2 flex-row items-center justify-center rounded-lg bg-blue-600"
-              >
+                className="mt-2 flex-row items-center justify-center rounded-lg bg-blue-600">
                 {isSubmitting ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
-                  <Text className="text-white">Login</Text>
+                  <Text className="text-white font-sant">Login</Text>
                 )}
               </Button>
               <View>
-                  <Link href="/forgot-password" asChild>
-                    <TouchableOpacity className='flex justify-center items-center'>
-                      <Text className="font-sans text-sm">Belum punya akun? <Text className='text-blue-500 text-sm'>Lupa Password?</Text></Text>
-                    </TouchableOpacity>
-                  </Link>
-                </View>
+                <Link href="/forgot-password" asChild>
+                  <TouchableOpacity className="flex items-center justify-center">
+                    <Text className="font-sans text-sm">
+                      Belum punya akun?{' '}
+                      <Text className="text-sm font-sans text-blue-500">Daftar di sini!</Text>
+                    </Text>
+                  </TouchableOpacity>
+                </Link>
+              </View>
             </View>
           </View>
 
