@@ -15,7 +15,7 @@ export default function TabLayout() {
           paddingTop: 10,
         },
         tabBarLabelStyle: {
-          fontSize: 9, // ubah ukuran teks
+          fontSize: 9,
         },
         headerShown: false,
         tabBarButton: HapticTab,
