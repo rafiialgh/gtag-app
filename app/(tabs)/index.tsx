@@ -118,7 +118,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-[#111112]">
+    <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
       <FlatList
         data={matches}
         keyExtractor={(item) => item.id}
@@ -126,6 +126,7 @@ export default function HomeScreen() {
         onRefresh={onRefresh}
         ListHeaderComponent={renderHeader}
         contentContainerStyle={{ paddingBottom: 24, gap: 12 }}
+        className='border border-red-500'
         renderItem={({ item }) => (
           <View className="mx-5 h-[82px] flex-row items-center justify-between rounded-md border border-[#B8B8B84D] bg-[#272727] px-5">
             <View className="flex-row items-center justify-center gap-3">
