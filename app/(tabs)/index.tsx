@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FlatList, View, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text } from '@/components/ui/text';
 import { Bell, X } from 'lucide-react-native';
 import { AnimatedDot } from '@/components/AnimateDot';
@@ -16,6 +16,7 @@ const initialMatches = [
 export default function HomeScreen() {
   const [matches, setMatches] = useState(initialMatches);
   const [refreshing, setRefreshing] = useState(false);
+  const insets = useSafeAreaInsets();
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -37,7 +38,7 @@ export default function HomeScreen() {
   const renderHeader = () => (
     <View className="border border-white px-5">
       {/* Header Top */}
-      <View className="mt-5 flex flex-row justify-between">
+      {/* <View className="mt-5 flex flex-row justify-between">
         <View className="h-5 w-20">
           <Image
             className="h-full w-full"
@@ -49,7 +50,7 @@ export default function HomeScreen() {
             <Bell size={15} color="#000" />
           </View>
         </View>
-      </View>
+      </View> */}
 
       {/* Profil */}
       <View className="mt-10 flex h-56 w-full items-center justify-center">
@@ -118,15 +119,17 @@ export default function HomeScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
+    // <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
       <FlatList
         data={matches}
         keyExtractor={(item) => item.id}
         refreshing={refreshing}
         onRefresh={onRefresh}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={renderHeader}
-        contentContainerStyle={{ paddingBottom: 24, gap: 12 }}
-        className='border border-red-500'
+        contentContainerStyle={{ paddingTop: insets.top + 60, paddingBottom: 24, gap: 12 }}
+        progressViewOffset={insets.top + 60}
+        className='border border-red-500 bg-[#111112]'
         renderItem={({ item }) => (
           <View className="mx-5 h-[82px] flex-row items-center justify-between rounded-md border border-[#B8B8B84D] bg-[#272727] px-5">
             <View className="flex-row items-center justify-center gap-3">
@@ -155,6 +158,6 @@ export default function HomeScreen() {
           </View>
         )}
       />
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
