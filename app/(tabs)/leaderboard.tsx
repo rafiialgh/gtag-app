@@ -3,7 +3,7 @@ import { Text } from '@/components/ui/text';
 import { Bell } from 'lucide-react-native';
 import { FlatList, View, Image } from 'react-native';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from '@/components/ui/card';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -26,6 +26,7 @@ const initialLeaderboards = [
 export default function Leaderboard() {
   const [ranks, setRanks] = useState(initialLeaderboards);
   const [refreshing, setRefreshing] = useState(false);
+  const insets = useSafeAreaInsets();
 
   // const onRefresh = async () => {
   //   setRefreshing(true);
@@ -47,7 +48,7 @@ export default function Leaderboard() {
   const renderHeader = () => (
     <View className="">
       {/* Header Top */}
-      <View className="mt-5 flex flex-row justify-between">
+      {/* <View className="mt-5 flex flex-row justify-between">
         <View className="h-5 w-20">
           <Image
             className="h-full w-full"
@@ -59,10 +60,10 @@ export default function Leaderboard() {
             <Bell size={15} color="#000" />
           </View>
         </View>
-      </View>
+      </View> */}
 
       {/* Peringkat */}
-      <View className="mt-10 flex w-full items-center justify-center">
+      <View className="mt-5 flex w-full items-center justify-center">
         <Text variant="h1">Peringkat</Text>
       </View>
 
@@ -135,14 +136,15 @@ export default function Leaderboard() {
     </View>
   );
   return (
-    <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
-      {/* <Text>Leaderboard</Text> */}
+    // <SafeAreaView className="flex-1 bg-[#111112]" edges={['top', 'left', 'right']}>
       <FlatList
         data={ranks}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={renderHeader}
-        contentContainerStyle={{ paddingBottom: 24, gap: 12 }}
-        // className='border border-red-500'
+        contentContainerStyle={{ paddingTop: insets.top + 60, paddingBottom: 24, gap: 12 }}
+        progressViewOffset={insets.top + 60}
+        className=' bg-[#111112]'
         renderItem={({ item }) => (
           <View className=''>
             <Card className='mx-3 bg-[#252728] h-[52px] flex-row items-center justify-between '>
@@ -165,6 +167,6 @@ export default function Leaderboard() {
           </View>
         )}
       />
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
